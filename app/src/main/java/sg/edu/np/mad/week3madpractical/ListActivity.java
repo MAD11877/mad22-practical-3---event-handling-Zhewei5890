@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ListActivity extends AppCompatActivity {
@@ -17,8 +18,25 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
         ImageView icon = findViewById(R.id.imageView2);
+        Random rd = new Random();
+        // Create a ArrayList storing User objects
+        ArrayList<User> userList = new ArrayList<User>();
+        //Use a For Loop to add 20 User objects into the ArrayLists
+        for (int count = 0; count < 20; count++)
+        {
+            User randomUserObj = new User();
+            //Randomize the respective attributes
+            int randomInt =  rd.nextInt(2000000000 - 100000000);
+            String randomName = Integer.toString(randomInt);
+            randomUserObj.name = "Name" + randomName;
+            int randomNumber =  rd.nextInt(2000000000 - 100000000);
+            String randomDesc = Integer.toString(randomNumber);
+            randomUserObj.description = "Description " + randomDesc;
+            randomUserObj.followed = rd.nextBoolean();
+            //Add User object into the ArrayList
+            userList.add(randomUserObj);
+        }
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
